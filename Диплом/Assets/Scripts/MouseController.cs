@@ -5,13 +5,6 @@ using UnityEngine;
 public class MouseController : MonoBehaviour
 {
     private GameObject selectedObject;
-    private GameObject SelectedCell;
-    Transform DefaultParent, DefaultTempCardParent;
-
-    private void Awake()
-    {
-        SelectedCell = GameObject.Find("SelectedCell");
-    }
 
     private void Update()
     {
@@ -32,11 +25,6 @@ public class MouseController : MonoBehaviour
                     selectedObject = hit.collider.gameObject;
                     Cursor.visible = false;
 
-                    DefaultParent = DefaultTempCardParent = transform.parent;
-
-                    SelectedCell.transform.SetParent(DefaultParent);
-
-                    transform.SetParent(DefaultParent.parent);
                 }
             }
             else 
@@ -44,13 +32,9 @@ public class MouseController : MonoBehaviour
                 Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
                 selectedObject.transform.position = new Vector3(Mathf.Round(worldPosition.x) - .5f, 0f, Mathf.Round(worldPosition.z) - .5f);
-
+                
                 selectedObject = null;
                 Cursor.visible = true;
-
-                transform.SetParent(DefaultParent);
-                SelectedCell.transform.SetParent(GameObject.Find("GameArea").transform);
-                SelectedCell.transform.localPosition = new Vector3(0, -1, 0);
             }
         }
 
@@ -59,9 +43,6 @@ public class MouseController : MonoBehaviour
             Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
             selectedObject.transform.position = new Vector3(worldPosition.x, .3f, worldPosition.z);
-
-            SelectedCell.transform.localPosition = new Vector3(Mathf.Round(worldPosition.x), 0f, Mathf.Round(worldPosition.z));
-
         
             if (Input.GetMouseButtonDown(1))
             {
@@ -81,4 +62,5 @@ public class MouseController : MonoBehaviour
 
         return hit;
     }
+
 }
