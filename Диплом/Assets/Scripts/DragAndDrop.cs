@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragAndDrop : MonoBehaviour
 {
     Vector3 offset;
-
+    Vector3 lastPosition;
     public string destinationTag = "GameArea";
 
     void OnMouseDown()
@@ -13,8 +13,9 @@ public class DragAndDrop : MonoBehaviour
         offset = transform.position - MouseWorldPosition();
         transform.GetComponent<Collider>().enabled = false;
         Cursor.visible = false;
+        lastPosition = transform.position;
     }
-    
+
     void OnMouseDrag()
     {
         Vector3 worldPos = MouseWorldPosition();
@@ -24,6 +25,7 @@ public class DragAndDrop : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90f, transform.rotation.eulerAngles.z));
         }
     }
+
     void OnMouseUp()
     {
         var rayOrigin = Camera.main.transform.position;
@@ -34,14 +36,14 @@ public class DragAndDrop : MonoBehaviour
             if (hit.transform.tag == destinationTag)
             {
                 transform.position = hit.transform.position;
+                transform.tag = "Lying";
             }
             else
             {
-                transform.position = new Vector3(3, -0.05f, -1.45f);
+                transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
+                transform.GetComponent<Collider>().enabled = true;
             }
         }
-        transform.GetComponent<Collider>().enabled = true;
-        transform.tag = "Lying";
         Cursor.visible = true;
     }
 

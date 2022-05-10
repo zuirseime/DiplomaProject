@@ -7,6 +7,8 @@ TagManager:
   - Drag
   - GameArea
   - Lying
+  - Player1UI
+  - Player2UI
   layers:
   - Default
   - TransparentFX
