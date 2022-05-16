@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    Vector3 offset;
-    Vector3 lastPosition;
-    public string destinationTag = "GameArea";
+    [SerializeField] private Transform parent;
+    private Vector3 offset;
+    private Vector3 lastPosition;
+    private string destinationTag = "GameArea";
+    private string newTag = "Lying";
 
     void OnMouseDown()
     {
         offset = transform.position - MouseWorldPosition();
-        transform.GetComponent<Collider>().enabled = false;
+        transform.GetComponent<MeshCollider>().enabled = false;
         Cursor.visible = false;
         lastPosition = transform.position;
     }
@@ -36,12 +38,12 @@ public class DragAndDrop : MonoBehaviour
             if (hit.transform.tag == destinationTag)
             {
                 transform.position = hit.transform.position;
-                transform.tag = "Lying";
+                transform.tag = newTag;
             }
             else
             {
                 transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
-                transform.GetComponent<Collider>().enabled = true;
+                transform.GetComponent<MeshCollider>().enabled = true;
             }
         }
         Cursor.visible = true;

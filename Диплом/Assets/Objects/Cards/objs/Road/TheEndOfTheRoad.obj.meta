@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf5971f55132d79469d7ed3bf72eac13
+guid: 3b5161d9c6b74444eb4d333ce61f1aff
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: palette.033
+      name: defaultMat
     second: {fileID: 2100000, guid: 2acbc1eea4b7c95449e8da1a8c2d10b9, type: 2}
   materials:
     materialImportMode: 2
@@ -37,7 +37,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -102,7 +102,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
