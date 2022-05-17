@@ -98,8 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ad2cb24c0b86143929e403892a66bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileWidth: 65
+  TileHeight: 6
   VoxelSize: 0.015384615
-  TileSideVoxels: 65
+  ColorsForward: 
+  ColorsLeft: 
+  ColorsRight: 
+  ColorsBack: 
 --- !u!64 &6271966973358394267
 MeshCollider:
   m_ObjectHideFlags: 0

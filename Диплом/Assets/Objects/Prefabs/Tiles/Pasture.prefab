@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3027079848502503576
+--- !u!1 &7607792441730425142
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6103633600708754339}
-  - component: {fileID: 8963105779280249577}
-  - component: {fileID: 5568387675819550333}
-  - component: {fileID: 5995542136204647421}
-  - component: {fileID: 4497015733211632170}
-  - component: {fileID: -8798732226750709608}
+  - component: {fileID: 1667002102978736653}
+  - component: {fileID: 4608676417817955143}
+  - component: {fileID: 1067622396848074707}
+  - component: {fileID: 5465681601955952279}
+  - component: {fileID: -1852935793812654376}
+  - component: {fileID: 3972398333865368959}
   m_Layer: 0
   m_Name: Pasture
   m_TagString: Drag
@@ -21,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6103633600708754339
+--- !u!4 &1667002102978736653
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3027079848502503576}
+  m_GameObject: {fileID: 7607792441730425142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1538462, y: 0.1538462, z: 0.1538462}
@@ -36,21 +36,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8963105779280249577
+--- !u!33 &4608676417817955143
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3027079848502503576}
+  m_GameObject: {fileID: 7607792441730425142}
   m_Mesh: {fileID: -2432090755550338912, guid: 29f03e2a5e8cf9c4bbc07b392ad9784f, type: 3}
---- !u!23 &5568387675819550333
+--- !u!23 &1067622396848074707
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3027079848502503576}
+  m_GameObject: {fileID: 7607792441730425142}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,27 +86,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5995542136204647421
+--- !u!114 &5465681601955952279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3027079848502503576}
+  m_GameObject: {fileID: 7607792441730425142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1ad2cb24c0b86143929e403892a66bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VoxelSize: 0.015384615
-  TileSideVoxels: 65
---- !u!64 &4497015733211632170
+--- !u!64 &-1852935793812654376
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3027079848502503576}
+  m_GameObject: {fileID: 7607792441730425142}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -114,15 +112,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 29f03e2a5e8cf9c4bbc07b392ad9784f, type: 3}
---- !u!114 &-8798732226750709608
+--- !u!114 &3972398333865368959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3027079848502503576}
+  m_GameObject: {fileID: 7607792441730425142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
+  m_Script: {fileID: 11500000, guid: b1ad2cb24c0b86143929e403892a66bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileWidth: 65
+  TileHeight: 6
+  VoxelSize: 0.015384615
+  ColorsForward: 
+  ColorsLeft: 
+  ColorsRight: 
+  ColorsBack: 

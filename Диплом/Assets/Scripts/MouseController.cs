@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
-    private Transform parent;
     private GameObject selectedObject;
     private Vector3 lastPosition;
     private Vector3 lastRotation;
@@ -19,7 +18,7 @@ public class MouseController : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    if (!hit.collider.CompareTag("Drag"))
+                    if (!hit.collider.CompareTag("Drag") && !hit.collider.CompareTag("TownHall"))
                     {
                         return;
                     }
@@ -41,7 +40,9 @@ public class MouseController : MonoBehaviour
                         selectedObject.transform.GetComponent<MeshCollider>().enabled = true;
                     }
                     else{
+                        //VoxelTile.IsAcceptable();
                         selectedObject.transform.position = hit.transform.position;
+                        selectedObject.transform.SetParent(GameObject.FindGameObjectWithTag("Finish").transform);
                         selectedObject.transform.tag = newTag;
                         Cursor.visible = false;
                     }

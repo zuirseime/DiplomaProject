@@ -9,6 +9,7 @@ TagManager:
   - Lying
   - Player1UI
   - Player2UI
+  - TownHall
   layers:
   - Default
   - TransparentFX
