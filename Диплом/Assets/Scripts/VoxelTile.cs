@@ -72,7 +72,7 @@ public class VoxelTile : MonoBehaviour
         if (Physics.Raycast(new Ray(rayStart, direction), out RaycastHit hit, vox))
         {
             Mesh mesh = meshCollider.sharedMesh;
-            int hitTriangleVertex =  mesh.triangles[hit.triangleIndex*3];
+            int hitTriangleVertex =  mesh.triangles[hit.triangleIndex*3+1];
             int colorIndex = (int)(mesh.uv[hitTriangleVertex].x * 256);
             return colorIndex;
         }
