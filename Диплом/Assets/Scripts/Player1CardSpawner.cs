@@ -32,17 +32,17 @@ public class Player1CardSpawner : MonoBehaviour
                 var cell = Instantiate(objects[rand], position, Quaternion.Euler(0, 0, 0), parent);
                 cell.name = $"X: {x}";
             }
-            else if (randAngle > 45 || randAngle <= 135)
+            else if (randAngle > 45 && randAngle <= 135)
             {
                 var cell = Instantiate(objects[rand], position, Quaternion.Euler(0, 90, 0), parent);
                 cell.name = $"X: {x}";
             }
-            else if (randAngle > 135 || randAngle <= 225)
+            else if (randAngle > 135 && randAngle <= 225)
             {
                 var cell = Instantiate(objects[rand], position, Quaternion.Euler(0, 180, 0), parent);
                 cell.name = $"X: {x}";
             }
-            else if (randAngle > 225 || randAngle <= 315)
+            else if (randAngle > 225 && randAngle <= 315)
             {
                 var cell = Instantiate(objects[rand], position, Quaternion.Euler(0, 270, 0), parent);
                 cell.name = $"X: {x}";
