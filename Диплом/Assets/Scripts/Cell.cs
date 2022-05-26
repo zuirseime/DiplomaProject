@@ -6,7 +6,6 @@ public class Cell : MonoBehaviour
 {
     [SerializeField] private Color standartColor;
     [SerializeField] private Color hoverColor;
-
     [SerializeField] private MeshRenderer meshRenderer;
 
     private void ChangeColor(Color color)
@@ -16,10 +15,10 @@ public class Cell : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        ChangeColor(hoverColor);
+        ChangeColor(hoverColor);  
     }
     private void OnMouseExit()
     {
-        ChangeColor(standartColor);
+        ChangeColor(standartColor); 
     }
 }

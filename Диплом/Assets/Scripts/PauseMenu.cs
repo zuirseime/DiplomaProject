@@ -8,8 +8,9 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    private GameObject[] DragAndDrop;
+    private GameObject[] Cells;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -29,12 +30,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        ColliderDisabler();
     }
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        ColliderDisabler();
     }
 
     public void LoadMenu()
@@ -46,4 +49,18 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quit");
     } 
+
+    private void ColliderDisabler()
+    {
+        DragAndDrop = GameObject.FindGameObjectsWithTag("Drag");
+        Cells = GameObject.FindGameObjectsWithTag("GameArea");
+        for (int i = 0; i < DragAndDrop.Length; i++)
+        {
+            DragAndDrop[i].GetComponent<MeshCollider>().enabled = !DragAndDrop[i].GetComponent<MeshCollider>().enabled;
+        }
+        for (int i = 0; i < Cells.Length; i++)
+        {
+            Cells[i].transform.GetComponent<Collider>().enabled = !Cells[i].transform.GetComponent<Collider>().enabled;
+        }
+    }
 }

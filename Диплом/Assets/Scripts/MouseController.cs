@@ -8,7 +8,12 @@ public class MouseController : MonoBehaviour
     private Vector3 lastPosition;
     private Vector3 lastRotation;
     private string newTag = "Lying";
+    private GameObject pauseMenu;
 
+    private void Awake()
+    {
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -34,17 +39,23 @@ public class MouseController : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    if (!hit.collider.CompareTag("GameArea"))
+                    if (!pauseMenu.activeSelf)
                     {
-                        selectedObject.transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
-                        selectedObject.transform.GetComponent<MeshCollider>().enabled = true;
+                        if (!hit.collider.CompareTag("GameArea"))
+                        {
+                            selectedObject.transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
+                            selectedObject.transform.GetComponent<MeshCollider>().enabled = true;
+                        }
+                        else{
+                            selectedObject.transform.SetParent(GameObject.FindGameObjectWithTag("Finish").transform);
+                            selectedObject.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y + .05f, hit.transform.position.z);
+                            selectedObject.transform.tag = newTag;
+                            Cursor.visible = false;
+                        }
                     }
-                    else{
-                        //VoxelTile.IsAcceptable();
-                        selectedObject.transform.position = hit.transform.position;
-                        selectedObject.transform.SetParent(GameObject.FindGameObjectWithTag("Finish").transform);
-                        selectedObject.transform.tag = newTag;
-                        Cursor.visible = false;
+                    else
+                    {
+                        return;
                     }
                 }
                 selectedObject = null;
@@ -53,12 +64,19 @@ public class MouseController : MonoBehaviour
         }
         if (selectedObject != null)
         {
-            Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-            selectedObject.transform.position = new Vector3(worldPosition.x, lastPosition.y + .5f, worldPosition.z);
-            if (Input.GetMouseButtonDown(1))
+            if (!pauseMenu.activeSelf)
             {
-                selectedObject.transform.rotation = Quaternion.Euler(new Vector3(selectedObject.transform.rotation.eulerAngles.x, selectedObject.transform.rotation.eulerAngles.y + 90f, selectedObject.transform.rotation.eulerAngles.z));
+                Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
+                selectedObject.transform.position = new Vector3(worldPosition.x, lastPosition.y + .5f, worldPosition.z);
+                if (Input.GetMouseButtonDown(1))
+                {
+                    selectedObject.transform.rotation = Quaternion.Euler(new Vector3(selectedObject.transform.rotation.eulerAngles.x, selectedObject.transform.rotation.eulerAngles.y + 90f, selectedObject.transform.rotation.eulerAngles.z));
+                }
+            }
+            else
+            {
+                selectedObject.transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
             }
         }      
     }

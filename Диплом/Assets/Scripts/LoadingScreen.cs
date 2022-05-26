@@ -12,22 +12,9 @@ public class LoadingScreen : MonoBehaviour
 
     public Slider bar;
 
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
-
     public void Load()
     {
         loadingScreen.SetActive(true);
-        //SceneManager.LoadScene(loadLevel);
-
         StartCoroutine(LoadAsync());
     }
 

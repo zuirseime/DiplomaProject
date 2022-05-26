@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &17124539014172628
+--- !u!1 &5110958258141284083
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9118375080554913007}
-  - component: {fileID: 6223366171075143077}
-  - component: {fileID: 7455828679180861745}
-  - component: {fileID: 1999716863058332052}
-  - component: {fileID: 4174249452366664249}
-  - component: {fileID: 5226594773033088434}
+  - component: {fileID: 4061096820015781320}
+  - component: {fileID: 1192544978004372610}
+  - component: {fileID: 2425610026715662358}
+  - component: {fileID: 2586354503748305434}
+  - component: {fileID: 5620774784926991540}
+  - component: {fileID: 429414718879441503}
   m_Layer: 0
   m_Name: TheEndOfTheRoad
   m_TagString: Drag
@@ -21,36 +21,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9118375080554913007
+--- !u!4 &4061096820015781320
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17124539014172628}
+  m_GameObject: {fileID: 5110958258141284083}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15384616, y: 0.1538462, z: 0.1538462}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.15625, y: 0.15625, z: 0.15625}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6223366171075143077
+--- !u!33 &1192544978004372610
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17124539014172628}
+  m_GameObject: {fileID: 5110958258141284083}
   m_Mesh: {fileID: -2432090755550338912, guid: 3b5161d9c6b74444eb4d333ce61f1aff, type: 3}
---- !u!23 &7455828679180861745
+--- !u!23 &2425610026715662358
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17124539014172628}
+  m_GameObject: {fileID: 5110958258141284083}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,25 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1999716863058332052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17124539014172628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!64 &4174249452366664249
+--- !u!64 &2586354503748305434
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17124539014172628}
+  m_GameObject: {fileID: 5110958258141284083}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -112,21 +100,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 3b5161d9c6b74444eb4d333ce61f1aff, type: 3}
---- !u!114 &5226594773033088434
+--- !u!114 &5620774784926991540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17124539014172628}
+  m_GameObject: {fileID: 5110958258141284083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &429414718879441503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110958258141284083}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1ad2cb24c0b86143929e403892a66bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileWidth: 65
+  TileWidth: 64
   TileHeight: 6
-  VoxelSize: 0.015384615
+  VoxelSize: 0.015625
   ColorsForward: 
   ColorsLeft: 
   ColorsRight: 

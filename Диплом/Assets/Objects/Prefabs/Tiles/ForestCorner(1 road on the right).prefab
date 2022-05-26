@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8208462614334214609
+--- !u!1 &3281411931111244162
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1106898419666453226}
-  - component: {fileID: 2849460678535363488}
-  - component: {fileID: 1634502386957950772}
-  - component: {fileID: 4958080993246929398}
-  - component: {fileID: -22691250669477613}
-  - component: {fileID: -866059804200249661}
+  - component: {fileID: 5998730633051067065}
+  - component: {fileID: 8928644535855180787}
+  - component: {fileID: 5390053145395220327}
+  - component: {fileID: 8555017352804591191}
+  - component: {fileID: 5779793716952623112}
+  - component: {fileID: 8595763537152480005}
   m_Layer: 0
   m_Name: ForestCorner(1 road on the right)
   m_TagString: Drag
@@ -21,36 +21,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1106898419666453226
+--- !u!4 &5998730633051067065
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208462614334214609}
+  m_GameObject: {fileID: 3281411931111244162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15384616, y: 0.15384616, z: 0.15384616}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.15625, y: 0.15625, z: 0.15625}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2849460678535363488
+--- !u!33 &8928644535855180787
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208462614334214609}
+  m_GameObject: {fileID: 3281411931111244162}
   m_Mesh: {fileID: -2432090755550338912, guid: fab866970c1c2494fb7b0858cd891223, type: 3}
---- !u!23 &1634502386957950772
+--- !u!23 &5390053145395220327
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208462614334214609}
+  m_GameObject: {fileID: 3281411931111244162}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,32 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4958080993246929398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208462614334214609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1ad2cb24c0b86143929e403892a66bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TileWidth: 65
-  TileHeight: 6
-  VoxelSize: 0.015384615
-  ColorsForward: 
-  ColorsLeft: 
-  ColorsRight: 
-  ColorsBack: 
---- !u!64 &-22691250669477613
+--- !u!64 &8555017352804591191
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208462614334214609}
+  m_GameObject: {fileID: 3281411931111244162}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -119,15 +100,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: fab866970c1c2494fb7b0858cd891223, type: 3}
---- !u!114 &-866059804200249661
+--- !u!114 &5779793716952623112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8208462614334214609}
+  m_GameObject: {fileID: 3281411931111244162}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8595763537152480005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3281411931111244162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ad2cb24c0b86143929e403892a66bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileWidth: 64
+  TileHeight: 6
+  VoxelSize: 0.015625
+  ColorsForward: 
+  ColorsLeft: 
+  ColorsRight: 
+  ColorsBack: 

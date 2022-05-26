@@ -10,6 +10,7 @@ TagManager:
   - Player1UI
   - Player2UI
   - TownHall
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
