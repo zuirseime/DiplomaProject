@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5597102397268419249}
   - component: {fileID: 1231557795269664241}
   - component: {fileID: 7878284789434542242}
-  - component: {fileID: 4818015786209266859}
+  - component: {fileID: 3845371390165586564}
+  - component: {fileID: 997334955478067171}
   m_Layer: 0
   m_Name: X-shapedRoad
   m_TagString: Drag
@@ -112,7 +113,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4818015786209266859
+  player1Zone: {fileID: 7435010925403968523, guid: 46d2faeaddb4f2a49a413978ce2b28ea, type: 3}
+  player2Zone: {fileID: 2046644546549918330, guid: fec1634e2c2dcbf4386df6c31cd9d469, type: 3}
+--- !u!114 &3845371390165586564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091823376909790292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &997334955478067171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

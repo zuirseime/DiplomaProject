@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 16128786802602389}
   - component: {fileID: 6084494534749599868}
   - component: {fileID: 8601954867383644169}
-  - component: {fileID: 2541109012735874275}
+  - component: {fileID: 8996072292838656059}
+  - component: {fileID: 5422718336830764503}
   m_Layer: 0
   m_Name: Church
   m_TagString: Drag
@@ -112,7 +113,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2541109012735874275
+  player1Zone: {fileID: 7435010925403968523, guid: 46d2faeaddb4f2a49a413978ce2b28ea, type: 3}
+  player2Zone: {fileID: 2046644546549918330, guid: fec1634e2c2dcbf4386df6c31cd9d469, type: 3}
+--- !u!114 &8996072292838656059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7457388175893856112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &5422718336830764503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

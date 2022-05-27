@@ -3,18 +3,38 @@ using UnityEngine;
 
 public class VoxelTile : MonoBehaviour
 {
-    public int TileWidth = 65;
+    private Camera mainCamera;
+
+    public int TileWidth = 64;
     public int TileHeight = 6;
-    public float VoxelSize = 1 / 65;
+    public float VoxelSize = 1 / 64;
 
     [HideInInspector] public int[] ColorsForward;
     [HideInInspector] public int[] ColorsLeft;
     [HideInInspector] public int[] ColorsRight;
     [HideInInspector] public int[] ColorsBack;
 
-    public void Start()
+    private Outline outline;
+    private VoxelTile previousTile;
+
+    public void OnHoverEnter()
     {
-        ColorsRight = new int[TileWidth];
+        outline.OutlineWidth = 4;
+    }
+
+    public void OnHoverExit()
+    {
+        outline.OutlineWidth = 0;
+    }
+
+    private void OnEnable()
+    {
+        outline = GetComponent<Outline>();
+        mainCamera = GameObject.Find("Camera").GetComponent<Camera>();
+        outline.OutlineWidth = 0;
+
+
+        /*ColorsRight = new int[TileWidth];
         ColorsForward = new int[TileWidth];
         ColorsLeft = new int[TileWidth];
         ColorsBack = new int[TileWidth];
@@ -33,10 +53,10 @@ public class VoxelTile : MonoBehaviour
         Debug.Log("<color=blue>Right</color>\n" + string.Join(", ", ColorsRight), gameObject);
         Debug.Log("<color=blue>Forward</color>\n" + string.Join(", ", ColorsForward), gameObject);
         Debug.Log("<color=blue>Left</color>\n" + string.Join(", ", ColorsLeft), gameObject);
-        Debug.Log("<color=blue>Back</color>\n" + string.Join(", ", ColorsBack), gameObject);
+        Debug.Log("<color=blue>Back</color>\n" + string.Join(", ", ColorsBack), gameObject);*/
     }
 
-    private int GetVoxelColor(int verticalLayer, int horizontalOffset, Vector3 direction)
+    /*private int GetVoxelColor(int verticalLayer, int horizontalOffset, Vector3 direction)
     {
         var meshCollider = GetComponent<MeshCollider>();
 
@@ -67,9 +87,9 @@ public class VoxelTile : MonoBehaviour
 
         rayStart.y = meshCollider.bounds.min.y + half + verticalLayer * vox;
 
-        Debug.DrawRay(rayStart, direction*.01f, Color.blue, 10);
+        Debug.DrawRay(rayStart, direction*.01f, Color.blue, vox*2);
 
-        if (Physics.Raycast(new Ray(rayStart, direction), out RaycastHit hit, vox))
+        if (Physics.Raycast(new Ray(rayStart, direction), out RaycastHit hit, vox*2))
         {
             Mesh mesh = meshCollider.sharedMesh;
             int hitTriangleVertex =  mesh.triangles[hit.triangleIndex*3+1];
@@ -78,5 +98,28 @@ public class VoxelTile : MonoBehaviour
         }
 
         return -1;
+    }*/
+
+    private void Update()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray,out hit, 100))
+        {
+            var tile = hit.collider.GetComponent<VoxelTile>();
+            if (tile != null)
+            {
+                if (tile == this && tile != previousTile)
+                {
+                    OnHoverEnter();
+                    previousTile = tile;
+                }
+            }
+            else if (previousTile != null)
+            {
+                    OnHoverExit();
+                    previousTile = null;
+            }
+        }
     }
 }

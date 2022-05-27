@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3838972951244997631}
   - component: {fileID: 4706276895765665849}
   - component: {fileID: 8493078459669837793}
-  - component: {fileID: 2259257793155453308}
+  - component: {fileID: 8621890390418771910}
+  - component: {fileID: 4718614159875502539}
   m_Layer: 0
   m_Name: Forest
   m_TagString: Drag
@@ -112,7 +113,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2259257793155453308
+  player1Zone: {fileID: 7435010925403968523, guid: 46d2faeaddb4f2a49a413978ce2b28ea, type: 3}
+  player2Zone: {fileID: 2046644546549918330, guid: fec1634e2c2dcbf4386df6c31cd9d469, type: 3}
+--- !u!114 &8621890390418771910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909425900823612698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &4718614159875502539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -10,6 +10,11 @@ public class Player1CardSpawner : MonoBehaviour
     [SerializeField] private GameObject TownHall;
     [SerializeField] private GameObject townHallWarning;
 
+    private void Awake()
+    {
+
+    }
+
     public void OnClick()
     {
         var cellsize = objects[0].GetComponent<MeshRenderer>().bounds.size;
@@ -38,8 +43,17 @@ public class Player1CardSpawner : MonoBehaviour
 
     private IEnumerator TownHallWarning()
     {
-        townHallWarning.SetActive(true);
-        yield return new WaitForSeconds(.5f);
-        townHallWarning.SetActive(false);
+        //townHallWarning.SetActive(true);
+        //yield return new WaitForSeconds(.5f);
+        //townHallWarning.SetActive(false);
+
+        townHallWarning.transform.position = new Vector2(townHallWarning.transform.position.x, 0);
+        yield return new WaitForSeconds(1f);
+        
+        for (int y = 0; y >= -375; y -= 15)
+        {
+            townHallWarning.transform.position = new Vector2(townHallWarning.transform.position.x, y);
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

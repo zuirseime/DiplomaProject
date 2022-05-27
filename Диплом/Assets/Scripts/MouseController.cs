@@ -9,13 +9,18 @@ public class MouseController : MonoBehaviour
     private Vector3 lastRotation;
     private string newTag = "Lying";
     private GameObject pauseMenu;
+    public GameObject player1Zone;
+    public GameObject player2Zone;
+    private Outline outline;
 
     private void Awake()
     {
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        outline = GetComponent<Outline>();
     }
     private void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit = CastRay();
@@ -27,7 +32,8 @@ public class MouseController : MonoBehaviour
                     {
                         return;
                     }
-                    else{
+                    else
+                    {
                         selectedObject = hit.collider.gameObject;
                         selectedObject.transform.GetComponent<MeshCollider>().enabled = false;
                         lastPosition = new Vector3(selectedObject.transform.position.x, selectedObject.transform.position.y, selectedObject.transform.position.z);
@@ -47,10 +53,22 @@ public class MouseController : MonoBehaviour
                             selectedObject.transform.GetComponent<MeshCollider>().enabled = true;
                         }
                         else{
+                            Cursor.visible = false;
+
+                            if (selectedObject.transform.parent == GameObject.Find("Player1CardArea").transform)
+                            {
+                                outline.OutlineColor = Color.red;
+                                outline.OutlineWidth = 4;
+                                
+                            }
+                            else if (selectedObject.transform.parent == GameObject.Find("Player2CardArea").transform)
+                            {
+                                outline.OutlineColor = Color.blue;
+                                outline.OutlineWidth = 4;
+                            }
                             selectedObject.transform.SetParent(GameObject.FindGameObjectWithTag("Finish").transform);
                             selectedObject.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y + .05f, hit.transform.position.z);
                             selectedObject.transform.tag = newTag;
-                            Cursor.visible = false;
                         }
                     }
                     else
@@ -88,7 +106,7 @@ public class MouseController : MonoBehaviour
         Vector3 worldMousePositionFar = Camera.main.ScreenToWorldPoint(screenMousePositionFar);
         Vector3 worldMousePositionNear = Camera.main.ScreenToWorldPoint(screenMousePositionNear);
         RaycastHit hit;
-        Physics.Raycast(worldMousePositionNear, worldMousePositionFar - worldMousePositionNear, out hit);
+        Physics.Raycast(worldMousePositionNear, worldMousePositionFar - worldMousePositionNear, out hit, 100);
 
         return hit;
     }

@@ -10,6 +10,11 @@ public class Player2CardSpawner : MonoBehaviour
     [SerializeField] private GameObject TownHall;
     [SerializeField] private GameObject townHallWarning;
 
+    private void Awake()
+    {
+
+    }
+
     public void OnClick()
     {
         var cellsize = objects[0].GetComponent<MeshRenderer>().bounds.size;
