@@ -9,18 +9,19 @@ public class MouseController : MonoBehaviour
     private Vector3 lastRotation;
     private string newTag = "Lying";
     private GameObject pauseMenu;
-    public GameObject player1Zone;
-    public GameObject player2Zone;
     private Outline outline;
+
+    private VoxelTile[,] placedTiles;
+
+    private Transform previousParent;
 
     private void Awake()
     {
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
-        outline = GetComponent<Outline>();
+        placedTiles = new VoxelTile[11, 11];
     }
     private void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit = CastRay();
@@ -37,6 +38,7 @@ public class MouseController : MonoBehaviour
                         selectedObject = hit.collider.gameObject;
                         selectedObject.transform.GetComponent<MeshCollider>().enabled = false;
                         lastPosition = new Vector3(selectedObject.transform.position.x, selectedObject.transform.position.y, selectedObject.transform.position.z);
+                        outline = selectedObject.transform.GetComponent<Outline>();
                         Cursor.visible = false;
                     }
                 }
@@ -49,26 +51,46 @@ public class MouseController : MonoBehaviour
                     {
                         if (!hit.collider.CompareTag("GameArea"))
                         {
-                            selectedObject.transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
-                            selectedObject.transform.GetComponent<MeshCollider>().enabled = true;
+                            PlaceNotAvailable();
                         }
-                        else{
-                            Cursor.visible = false;
+                        else
+                        {
+                            Vector3 pos = selectedObject.transform.position;
+                            bool ForwardAvailable = false;
+                            bool BackAvailable = false;
+                            bool LeftAvailable = false;
+                            bool RightAvailable = false;
+                            if (!IsPlaceTaken((int)(pos.z - .5), (int)(pos.x - .5)))
+                            {
+                                if (placedTiles[(int)(pos.z + .5), (int)(pos.x - .5)] != null)
+                                    if ((selectedObject.GetComponent<VoxelTile>().Right != placedTiles[(int)(pos.z + .5), (int)(pos.x - .5)].Left) &&
+                                    (selectedObject.GetComponent<VoxelTile>().Right != placedTiles[(int)(pos.z - 1.4), (int)(pos.x - .5)].Left)) RightAvailable = false;
+                                    else RightAvailable = true;
+                                else RightAvailable = true;
 
-                            if (selectedObject.transform.parent == GameObject.Find("Player1CardArea").transform)
-                            {
-                                outline.OutlineColor = Color.red;
-                                outline.OutlineWidth = 4;
-                                
+                                if (placedTiles[(int)(pos.z - 1.5), (int)(pos.x - .5)] != null)
+                                    if ((selectedObject.GetComponent<VoxelTile>().Left != placedTiles[(int)(pos.z - 1.5), (int)(pos.x - .5)].Right) &&
+                                    (selectedObject.GetComponent<VoxelTile>().Left != placedTiles[(int)(pos.z + 0.4), (int)(pos.x - .5)].Right)) LeftAvailable = false;
+                                    else LeftAvailable = true;
+                                else LeftAvailable = true;
+
+                                if (placedTiles[(int)(pos.z - .5), (int)(pos.x + .5)] != null)
+                                    if ((selectedObject.GetComponent<VoxelTile>().Forward != placedTiles[(int)(pos.z - .5), (int)(pos.x + .5)].Back) &&
+                                    (selectedObject.GetComponent<VoxelTile>().Forward != placedTiles[(int)(pos.z - .5), (int)(pos.x - 1.4)].Back)) ForwardAvailable = false;
+                                    else ForwardAvailable = true;
+                                else ForwardAvailable = true;
+
+                                if (placedTiles[(int)(pos.z - .5), (int)(pos.x - 1.5)] != null)
+                                    if ((selectedObject.GetComponent<VoxelTile>().Back != placedTiles[(int)(pos.z - .5), (int)(pos.x - 1.5)].Forward) &&
+                                    (selectedObject.GetComponent<VoxelTile>().Back != placedTiles[(int)(pos.z - .5), (int)(pos.x + .4)].Forward)) BackAvailable = false;
+                                    else BackAvailable = true;
+                                else BackAvailable = true;
+
+                                if (ForwardAvailable && BackAvailable && LeftAvailable && RightAvailable)
+                                    PlaceAvailable(pos, hit);
+                                else return;
                             }
-                            else if (selectedObject.transform.parent == GameObject.Find("Player2CardArea").transform)
-                            {
-                                outline.OutlineColor = Color.blue;
-                                outline.OutlineWidth = 4;
-                            }
-                            selectedObject.transform.SetParent(GameObject.FindGameObjectWithTag("Finish").transform);
-                            selectedObject.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y + .05f, hit.transform.position.z);
-                            selectedObject.transform.tag = newTag;
+                            else return;
                         }
                     }
                     else
@@ -87,16 +109,24 @@ public class MouseController : MonoBehaviour
                 Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
                 selectedObject.transform.position = new Vector3(worldPosition.x, lastPosition.y + .5f, worldPosition.z);
+
                 if (Input.GetMouseButtonDown(1))
                 {
                     selectedObject.transform.rotation = Quaternion.Euler(new Vector3(selectedObject.transform.rotation.eulerAngles.x, selectedObject.transform.rotation.eulerAngles.y + 90f, selectedObject.transform.rotation.eulerAngles.z));
+                    selectedObject.GetComponent<VoxelTile>().TileRotator();
                 }
             }
             else
             {
                 selectedObject.transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
             }
-        }      
+        }    
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            for (int y = 0; y < 11; y++)
+                for (int x = 0; x < 11; x++)
+                    print(placedTiles[x, y]);
+        }
     }
 
     private RaycastHit CastRay() 
@@ -109,5 +139,37 @@ public class MouseController : MonoBehaviour
         Physics.Raycast(worldMousePositionNear, worldMousePositionFar - worldMousePositionNear, out hit, 100);
 
         return hit;
+    }
+
+    private void PlaceNotAvailable()
+    {
+        selectedObject.transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
+        selectedObject.transform.GetComponent<MeshCollider>().enabled = true;
+    }
+
+    private void PlaceAvailable(Vector3 pos, RaycastHit hit)
+    {   
+        if (selectedObject.transform.parent == GameObject.Find("Player1CardArea").transform)
+        {
+            outline.OutlineColor = Color.red;
+            outline.OutlineWidth = 4;
+            selectedObject.transform.name += $"X: {hit.transform.position.x} Z: {hit.transform.position.z} PlayerRed";
+        }
+        else if (selectedObject.transform.parent == GameObject.Find("Player2CardArea").transform)
+        {
+            outline.OutlineColor = Color.blue;
+            outline.OutlineWidth = 4;
+            selectedObject.transform.name += $"X: {hit.transform.position.x} Z: {hit.transform.position.z} PlayerBlue";
+        }
+        selectedObject.transform.SetParent(GameObject.FindGameObjectWithTag("Finish").transform);
+        selectedObject.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y + .05f, hit.transform.position.z);
+        selectedObject.transform.tag = newTag;
+        placedTiles[(int)(pos.z - .5), (int)(pos.x - .5)] = selectedObject.GetComponent<VoxelTile>();
+    }
+
+    private bool IsPlaceTaken(int x, int z)
+    {
+        if (placedTiles[x, z] != null) return true;
+        return false;
     }
 }

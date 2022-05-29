@@ -21,9 +21,9 @@ public class Player1CardSpawner : MonoBehaviour
 
         if (TownHall.transform.parent != parent)
         {
-            if (parent.transform.childCount > 0)
+            if (parent.childCount > 0)
             {
-                for (int x = 0; x < parent.transform.childCount - 1; x++)
+                for (int x = 0; x < parent.childCount; x++)
                 {
                     Destroy(parent.GetChild(x).gameObject);
                 }
@@ -31,7 +31,7 @@ public class Player1CardSpawner : MonoBehaviour
             for (int x = -2; x <= 2; x++)
             {
                 int rand = Random.Range(0, objects.Length - 1);
-                var position = new Vector3(x * (cellsize.x + offset), parent.localPosition.y, parent.localPosition.z);
+                var position = new Vector3(parent.localPosition.x + x * (cellsize.x + offset), parent.localPosition.y, parent.localPosition.z);
                 var cell = Instantiate(objects[rand], position, Quaternion.identity, parent);
             }
         }
@@ -43,17 +43,8 @@ public class Player1CardSpawner : MonoBehaviour
 
     private IEnumerator TownHallWarning()
     {
-        //townHallWarning.SetActive(true);
-        //yield return new WaitForSeconds(.5f);
-        //townHallWarning.SetActive(false);
-
-        townHallWarning.transform.position = new Vector2(townHallWarning.transform.position.x, 0);
-        yield return new WaitForSeconds(1f);
-        
-        for (int y = 0; y >= -375; y -= 15)
-        {
-            townHallWarning.transform.position = new Vector2(townHallWarning.transform.position.x, y);
-            yield return new WaitForEndOfFrame();
-        }
+        townHallWarning.SetActive(true);
+        yield return new WaitForSeconds(.75f);
+        townHallWarning.SetActive(false);
     }
 }
