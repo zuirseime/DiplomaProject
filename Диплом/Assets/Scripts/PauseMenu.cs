@@ -30,14 +30,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        ColliderDisabler();
+        /*ColliderDisabler();*/
     }
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
-        ColliderDisabler();
+        /*ColliderDisabler();*/
     }
 
     public void LoadMenu()
@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quit");
     } 
 
-    private void ColliderDisabler()
+    /*private void ColliderDisabler()
     {
         DragAndDrop = GameObject.FindGameObjectsWithTag("Drag");
         Cells = GameObject.FindGameObjectsWithTag("GameArea");
@@ -62,5 +62,5 @@ public class PauseMenu : MonoBehaviour
         {
             Cells[i].transform.GetComponent<Collider>().enabled = !Cells[i].transform.GetComponent<Collider>().enabled;
         }
-    }
+    }*/
 }

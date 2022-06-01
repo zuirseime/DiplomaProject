@@ -12,7 +12,7 @@ public class Player2CardSpawner : MonoBehaviour
 
     private void Awake()
     {
-
+        
     }
 
     public void OnClick()

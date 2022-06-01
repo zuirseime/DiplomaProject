@@ -5,15 +5,9 @@ public class VoxelTile : MonoBehaviour
 {
     private Camera mainCamera;
 
-    public Transform Forward;
-    public Transform Back;
-    public Transform Right;
-    public Transform Left;
+    public Transform Forward, Back, Right, Left;
 
-    private Transform tempForward;
-    private Transform tempBack;
-    private Transform tempRight;
-    private Transform tempLeft;
+    private Transform tempForward, tempBack, tempRight, tempLeft;
 
     private Outline outline;
     private VoxelTile previousTile;

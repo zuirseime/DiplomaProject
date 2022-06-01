@@ -5,20 +5,15 @@ using UnityEngine;
 public class MouseController : MonoBehaviour
 {
     private GameObject selectedObject;
-    private Vector3 lastPosition;
-    private Vector3 lastRotation;
-    private string newTag = "Lying";
-    private GameObject pauseMenu;
+    private Vector3 lastPosition, lastRotation;
     private Outline outline;
-
     private VoxelTile[,] placedTiles;
 
-    private Transform previousParent;
+    public GameObject player1UI, player2UI, playerSwap, pauseMenu;
 
     private void Awake()
     {
-        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
-        placedTiles = new VoxelTile[11, 11];
+        placedTiles = new VoxelTile[13, 13];
     }
     private void Update()
     {
@@ -47,55 +42,42 @@ public class MouseController : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    if (!pauseMenu.activeSelf)
+                    if (!hit.collider.CompareTag("GameArea"))
                     {
-                        if (!hit.collider.CompareTag("GameArea"))
-                        {
-                            PlaceNotAvailable();
-                        }
-                        else
-                        {
-                            Vector3 pos = selectedObject.transform.position;
-                            bool ForwardAvailable = false;
-                            bool BackAvailable = false;
-                            bool LeftAvailable = false;
-                            bool RightAvailable = false;
-                            if (!IsPlaceTaken((int)(pos.z - .5), (int)(pos.x - .5)))
-                            {
-                                if (placedTiles[(int)(pos.z + .5), (int)(pos.x - .5)] != null)
-                                    if ((selectedObject.GetComponent<VoxelTile>().Right != placedTiles[(int)(pos.z + .5), (int)(pos.x - .5)].Left) &&
-                                    (selectedObject.GetComponent<VoxelTile>().Right != placedTiles[(int)(pos.z - 1.4), (int)(pos.x - .5)].Left)) RightAvailable = false;
-                                    else RightAvailable = true;
-                                else RightAvailable = true;
-
-                                if (placedTiles[(int)(pos.z - 1.5), (int)(pos.x - .5)] != null)
-                                    if ((selectedObject.GetComponent<VoxelTile>().Left != placedTiles[(int)(pos.z - 1.5), (int)(pos.x - .5)].Right) &&
-                                    (selectedObject.GetComponent<VoxelTile>().Left != placedTiles[(int)(pos.z + 0.4), (int)(pos.x - .5)].Right)) LeftAvailable = false;
-                                    else LeftAvailable = true;
-                                else LeftAvailable = true;
-
-                                if (placedTiles[(int)(pos.z - .5), (int)(pos.x + .5)] != null)
-                                    if ((selectedObject.GetComponent<VoxelTile>().Forward != placedTiles[(int)(pos.z - .5), (int)(pos.x + .5)].Back) &&
-                                    (selectedObject.GetComponent<VoxelTile>().Forward != placedTiles[(int)(pos.z - .5), (int)(pos.x - 1.4)].Back)) ForwardAvailable = false;
-                                    else ForwardAvailable = true;
-                                else ForwardAvailable = true;
-
-                                if (placedTiles[(int)(pos.z - .5), (int)(pos.x - 1.5)] != null)
-                                    if ((selectedObject.GetComponent<VoxelTile>().Back != placedTiles[(int)(pos.z - .5), (int)(pos.x - 1.5)].Forward) &&
-                                    (selectedObject.GetComponent<VoxelTile>().Back != placedTiles[(int)(pos.z - .5), (int)(pos.x + .4)].Forward)) BackAvailable = false;
-                                    else BackAvailable = true;
-                                else BackAvailable = true;
-
-                                if (ForwardAvailable && BackAvailable && LeftAvailable && RightAvailable)
-                                    PlaceAvailable(pos, hit);
-                                else return;
-                            }
-                            else return;
-                        }
+                        PlaceNotAvailable();
                     }
                     else
                     {
-                        return;
+                        Vector3 pos = selectedObject.transform.position;
+                        bool ForwardAvailable = false;
+                        bool BackAvailable = false;
+                        bool LeftAvailable = false;
+                        bool RightAvailable = false;
+                        if (!IsPlaceTaken((int)(pos.x + 1), (int)(pos.z + 1)))
+                        {
+                            if (placedTiles[(int)(pos.x + 2), (int)(pos.z + 1)] != null)
+                                if (selectedObject.GetComponent<VoxelTile>().Right != placedTiles[(int)(pos.x + 2), (int)(pos.z + 1)].Left) RightAvailable = false;
+                                else RightAvailable = true;
+                            else RightAvailable = true;
+                            if (placedTiles[(int)(pos.x), (int)(pos.z + 1)] != null)
+                                if (selectedObject.GetComponent<VoxelTile>().Left != placedTiles[(int)(pos.x), (int)(pos.z + 1)].Right) LeftAvailable = false;
+                                else LeftAvailable = true;
+                            else LeftAvailable = true;
+                            if (placedTiles[(int)(pos.x + 1), (int)(pos.z + 2)] != null)
+                                if (selectedObject.GetComponent<VoxelTile>().Forward != placedTiles[(int)(pos.x + 1), (int)(pos.z + 2)].Back) ForwardAvailable = false;
+                                else ForwardAvailable = true;
+                            else ForwardAvailable = true;
+                            if (placedTiles[(int)(pos.x + 1), (int)(pos.z)] != null)
+                                if (selectedObject.GetComponent<VoxelTile>().Back != placedTiles[(int)(pos.x + 1), (int)(pos.z)].Forward) BackAvailable = false;
+                                else BackAvailable = true;
+                            else BackAvailable = true;
+                            if (ForwardAvailable && BackAvailable && LeftAvailable && RightAvailable)
+                            {
+                                PlaceAvailable(pos, hit);
+                            }
+                            else return;
+                        }
+                        else return;
                     }
                 }
                 selectedObject = null;
@@ -104,28 +86,22 @@ public class MouseController : MonoBehaviour
         }
         if (selectedObject != null)
         {
-            if (!pauseMenu.activeSelf)
-            {
-                Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
-                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
-                selectedObject.transform.position = new Vector3(worldPosition.x, lastPosition.y + .5f, worldPosition.z);
+            Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.WorldToScreenPoint(selectedObject.transform.position).z);
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(position);
+            selectedObject.transform.position = new Vector3(worldPosition.x, lastPosition.y + .5f, worldPosition.z);
 
-                if (Input.GetMouseButtonDown(1))
-                {
-                    selectedObject.transform.rotation = Quaternion.Euler(new Vector3(selectedObject.transform.rotation.eulerAngles.x, selectedObject.transform.rotation.eulerAngles.y + 90f, selectedObject.transform.rotation.eulerAngles.z));
-                    selectedObject.GetComponent<VoxelTile>().TileRotator();
-                }
+            if (Input.GetMouseButtonDown(1))
+            {
+                selectedObject.transform.rotation = Quaternion.Euler(new Vector3(selectedObject.transform.rotation.eulerAngles.x, selectedObject.transform.rotation.eulerAngles.y + 90f, selectedObject.transform.rotation.eulerAngles.z));
+                selectedObject.GetComponent<VoxelTile>().TileRotator();
             }
-            else
+
+            if (pauseMenu.activeSelf)
             {
                 selectedObject.transform.position = new Vector3(lastPosition.x, lastPosition.y, lastPosition.z);
+                selectedObject.transform.GetComponent<MeshCollider>().enabled = true;
+                selectedObject = null;
             }
-        }    
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            for (int y = 0; y < 11; y++)
-                for (int x = 0; x < 11; x++)
-                    print(placedTiles[x, y]);
         }
     }
 
@@ -153,23 +129,25 @@ public class MouseController : MonoBehaviour
         {
             outline.OutlineColor = Color.red;
             outline.OutlineWidth = 4;
-            selectedObject.transform.name += $"X: {hit.transform.position.x} Z: {hit.transform.position.z} PlayerRed";
+            selectedObject.transform.name = "PlayerRed";
+            player1UI.SetActive(false);
         }
         else if (selectedObject.transform.parent == GameObject.Find("Player2CardArea").transform)
         {
             outline.OutlineColor = Color.blue;
             outline.OutlineWidth = 4;
-            selectedObject.transform.name += $"X: {hit.transform.position.x} Z: {hit.transform.position.z} PlayerBlue";
+            selectedObject.transform.name = "PlayerBlue";
+            player2UI.SetActive(false);
         }
-        selectedObject.transform.SetParent(GameObject.FindGameObjectWithTag("Finish").transform);
+        selectedObject.transform.SetParent(GameObject.Find("GameArea").transform);
         selectedObject.transform.position = new Vector3(hit.transform.position.x, hit.transform.position.y + .05f, hit.transform.position.z);
-        selectedObject.transform.tag = newTag;
-        placedTiles[(int)(pos.z - .5), (int)(pos.x - .5)] = selectedObject.GetComponent<VoxelTile>();
+        placedTiles[(int)(pos.x + 1), (int)(pos.z + 1)] = selectedObject.GetComponent<VoxelTile>();
+        playerSwap.SetActive(true);
     }
 
     private bool IsPlaceTaken(int x, int z)
     {
-        if (placedTiles[x, z] != null) return true;
+        if (placedTiles[x + 1, z + 1] != null) return true;
         return false;
     }
 }
