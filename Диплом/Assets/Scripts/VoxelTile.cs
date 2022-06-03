@@ -4,13 +4,11 @@ using UnityEngine;
 public class VoxelTile : MonoBehaviour
 {
     private Camera mainCamera;
-
     public Transform Forward, Back, Right, Left;
-
     private Transform tempForward, tempBack, tempRight, tempLeft;
-
     private Outline outline;
     private VoxelTile previousTile;
+    public int tilePrice;
 
     public void OnHoverEnter()
     {

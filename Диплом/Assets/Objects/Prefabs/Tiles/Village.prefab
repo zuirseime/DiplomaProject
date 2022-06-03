@@ -113,7 +113,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1UI: {fileID: 0}
+  player2UI: {fileID: 0}
   playerSwap: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  redPlayerZone: {fileID: 0}
+  bluePlayerZone: {fileID: 0}
+  isMovesPossible: 1
 --- !u!114 &1275530718135605838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +154,4 @@ MonoBehaviour:
   Back: {fileID: 2685096894541257403, guid: 7d6675ce81b67d545a25fd774a8a5e2c, type: 3}
   Right: {fileID: 2685096894541257403, guid: 7d6675ce81b67d545a25fd774a8a5e2c, type: 3}
   Left: {fileID: 2685096894541257403, guid: 7d6675ce81b67d545a25fd774a8a5e2c, type: 3}
+  tilePrice: 5

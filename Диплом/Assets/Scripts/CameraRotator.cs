@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class CameraRotator : MonoBehaviour
 {
-    [SerializeField] private MouseController movesCount;
-    private int tileCount;
-    public GameObject cameraRotator, player1UI, player2UI, playerSwap, gameArea;
+    [SerializeField] public MouseController movesValue;
+    private bool isMovesLeft;
+    public GameObject cameraRotator, player1UI, player2UI, playerSwap, redPlayerZone, bluePlayerZone, hud, roundCounter;
+    public float roundNumber = 0.5f;
 
     public void PlayerSpawer()
     {
+        roundNumber += 0.5f;
+        isMovesLeft = movesValue.isMovesPossible;
         cameraRotator.transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.eulerAngles.y + 180, 0));
-        playerSwap.SetActive(false);
-        tileCount = gameArea.transform.childCount;
 
-        if (gameArea.transform.GetChild(tileCount - 1).name == "PlayerBlue")
-        {
-            player1UI.SetActive(true);
-            player2UI.SetActive(false);
-        }
-        else if (gameArea.transform.GetChild(tileCount - 1).name == "PlayerRed")
+        if (roundNumber % 1 == 0)
         {
             player1UI.SetActive(false);
             player2UI.SetActive(true);
         }
+        else
+        {
+            player2UI.SetActive(false);
+            player1UI.SetActive(true);
+            hud.GetComponent<ScoreBoard>().ScoreWrite();
+            hud.GetComponent<ScoreBoard>().RoundWrite();
+        }
 
-        playerSwap.SetActive(false);
+        if (playerSwap.activeSelf)
+            playerSwap.SetActive(false);
+        isMovesLeft = true;
+        movesValue.IsMovesPossible(isMovesLeft);
     }
 }
