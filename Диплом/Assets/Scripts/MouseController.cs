@@ -53,7 +53,7 @@ public class MouseController : MonoBehaviour
                     }
                     else
                     {
-                        Vector3 pos = selectedObject.transform.position;
+                        Vector3 pos = hit.transform.position;
                         bool ForwardAvailable = false;
                         bool BackAvailable = false;
                         bool LeftAvailable = false;

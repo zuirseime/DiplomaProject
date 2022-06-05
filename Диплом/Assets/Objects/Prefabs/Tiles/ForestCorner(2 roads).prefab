@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1689833713565782041}
   - component: {fileID: 2762611948526924941}
   - component: {fileID: 2864206999777754025}
-  - component: {fileID: 1727963566517535950}
   - component: {fileID: 6363800674030034168}
   - component: {fileID: 5520554833943169293}
   m_Layer: 0
@@ -101,19 +100,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: b5c088771e0c29648bb4cf5c20b3d03d, type: 3}
---- !u!114 &1727963566517535950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4688949718626957928}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a54cb3549e6d8f48ad040a9bb486115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSwap: {fileID: 0}
 --- !u!114 &6363800674030034168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +134,4 @@ MonoBehaviour:
   Back: {fileID: 2685096894541257403, guid: 7d6675ce81b67d545a25fd774a8a5e2c, type: 3}
   Right: {fileID: 2685096894541257403, guid: 7d6675ce81b67d545a25fd774a8a5e2c, type: 3}
   Left: {fileID: 483721819729600759, guid: e4cbb6402347b0842ac5cfdd8469f654, type: 3}
+  tilePrice: 0

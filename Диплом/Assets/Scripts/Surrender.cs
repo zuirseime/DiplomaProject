@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class Surrender : MonoBehaviour
 {
-    public GameObject player1UI, player2UI;
+    public GameObject player1UI, player2UI, Player1Win, Player2Win;
     public void OnClick()
     {
         if (player1UI.activeSelf)
         {
-            Debug.Log("Гравець <color=blue>USERNAME</color> переміг");
+            Time.timeScale = 0f;
+            Player2Win.SetActive(true);
+            Player1Win.SetActive(false);
             Time.timeScale = 0f;
         }
         else if (player2UI.activeSelf)
         {
-            Debug.Log("Гравець <color=red>USERNAME</color> переміг");
+            Time.timeScale = 0f;
+            Player1Win.SetActive(true);
+            Player2Win.SetActive(false);
             Time.timeScale = 0f;
         }
+
     }
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraRotator : MonoBehaviour
 {
     [SerializeField] public MouseController movesValue;
     private bool isMovesLeft;
-    public GameObject cameraRotator, player1UI, player2UI, playerSwap, redPlayerZone, bluePlayerZone, hud, roundCounter;
+    public GameObject cameraRotator, player1UI, player2UI, playerSwap, redPlayerZone, bluePlayerZone, hud, roundCounter, redScore, blueScore;
+    private Text tempRedScore, tempBlueScore;
     public float roundNumber = 0.5f;
 
     public void PlayerSpawer()
