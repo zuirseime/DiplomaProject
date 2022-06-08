@@ -10,16 +10,6 @@ public class VoxelTile : MonoBehaviour
     private VoxelTile previousTile;
     public int tilePrice;
 
-    public void OnHoverEnter()
-    {
-        outline.OutlineWidth = 4;
-    }
-
-    public void OnHoverExit()
-    {
-        outline.OutlineWidth = 0;
-    }
-
     public void TileRotator()
     {
         tempForward = Forward;
@@ -51,13 +41,13 @@ public class VoxelTile : MonoBehaviour
             {
                 if (tile == this && tile != previousTile)
                 {
-                    OnHoverEnter();
+                    outline.OutlineWidth = 4;
                     previousTile = tile;
                 }
             }
             else if (previousTile != null)
             {
-                    OnHoverExit();
+                    outline.OutlineWidth = 0;
                     previousTile = null;
             }
         }

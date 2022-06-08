@@ -50,6 +50,36 @@ public class ScoreBoard : MonoBehaviour
             Player1Win.SetActive(false);
         }
 
+        if (int.Parse(RedScoreText.text) < -100)
+        {
+            Time.timeScale = 0f;
+            winPanel.SetActive(true);
+            Player1Win.SetActive(true);
+            Player2Win.SetActive(false);
+        }
+        if (int.Parse(BlueScoreText.text) < -100)
+        {
+            Time.timeScale = 0f;
+            winPanel.SetActive(true);
+            Player2Win.SetActive(true);
+            Player1Win.SetActive(false);
+        }
+
+        if (winPanel.activeSelf)
+        {
+            for (int i = 0; i < redPlayerZone.transform.childCount; i++)
+                redPlayerZone.transform.GetChild(i).GetComponent<Outline>().OutlineWidth = 0;
+            for (int i = 0; i < bluePlayerZone.transform.childCount; i++)    
+                bluePlayerZone.transform.GetChild(i).GetComponent<Outline>().OutlineWidth = 0;
+        }
+        else
+        {
+            for (int i = 0; i < redPlayerZone.transform.childCount; i++)
+                redPlayerZone.transform.GetChild(i).GetComponent<Outline>().OutlineWidth = 4;
+            for (int i = 0; i < bluePlayerZone.transform.childCount; i++)    
+                bluePlayerZone.transform.GetChild(i).GetComponent<Outline>().OutlineWidth = 4;
+        }
+
         if (int.Parse(RedScoreText.text) > int.Parse(BlueScoreText.text))
         {
             Player1Pos.transform.localPosition = new Vector3 (-100f, 170f, 0);

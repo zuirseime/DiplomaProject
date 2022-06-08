@@ -8258,7 +8258,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 46deaa9bd8127114594eb55c8c30f884, type: 2}
   m_audioClip: {fileID: 8300000, guid: 074fec4d70b995242937bd927f98faa5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13550,6 +13550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1991160830}
+  redCards: {fileID: 299333791}
+  blueCards: {fileID: 1767638880}
+  winPanel: {fileID: 497636699}
 --- !u!114 &1561995972
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,11 +17,6 @@ public class Player2CardSpawner : MonoBehaviour
 
     public void OnClick()
     {
-        if (int.Parse(score.GetComponent<Text>().text) <= -100)
-        {
-            Debug.Log("Гравець <color=red>USERNAME</color> переміг");
-            Time.timeScale = 0f;
-        }
         var cellsize = objects[0].GetComponent<MeshRenderer>().bounds.size;
 
         if (TownHall.transform.parent != parent)
