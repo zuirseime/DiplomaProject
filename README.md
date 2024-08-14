@@ -8,10 +8,10 @@ The game was supposed to be like "Carcassonne", but it wasn't.
 
 ## In-game controls
 - Press Escape while in game to open pause menu.
-- LMB to take up or put down a tile.
+- LMB to put up or put down a tile.
 - RMB to rotate a tile.
-- Click a "Нові картки" button to get new or change existing tiles in a hand.
-- Click a "Підтвердити" button to complete your turn.
+- Click the "Нові картки" button to get new or change existing tiles in a hand.
+- Click the "Підтвердити" button to complete your turn.
 
 ## Installation
 You can download the latest compiled binary [here](https://github.com/zuirseime/DiplomaProject/releases/download/v1.0/college_diploma.zip)
